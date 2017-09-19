@@ -1,8 +1,3 @@
-// Select color input
-// Select size input
-
-// When size is submitted by the user, call makeGrid()
-
 function makeGrid() {
 
   const grid = document.getElementById("pixel_canvas");
@@ -25,7 +20,23 @@ function makeGrid() {
       }
       grid.appendChild(rows);
     }
+    paintCell();
   });
+
+  var paintCell = function() {
+    for (let i = 0; i < grid.rows.length; i++) {
+      for (let j = 0; j < grid.rows[i].cells.length; j++) {
+        grid.rows[i].cells[j].onclick = function() {
+          changeBackground(this);
+        };
+      }  
+    }
+  };
+
+  var changeBackground = function(cell) {
+    const color = document.getElementById("colorPicker").value;
+    cell.style.backgroundColor = color;
+  };
 };
 
 makeGrid();
